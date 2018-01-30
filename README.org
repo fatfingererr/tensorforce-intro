@@ -1,0 +1,40 @@
+#+TITLE: TensorForce 簡介
+#+SUBTITLE: 深度增強學習的好用庫
+#+DATE: 2018/02/02 (四)
+#+AUTHOR: fatfingererr @ Sukki 二月聚會
+#+EMAIL: fatfingererr@gmail.com
+#+OPTIONS: ':nil *:t -:t ::t <:t H:3 \n:nil ^:t arch:headline
+#+OPTIONS: author:t c:nil creator:comment d:(not "LOGBOOK") date:t
+#+OPTIONS: e:t email:nil f:t inline:t num:nil p:nil pri:nil stat:t
+#+OPTIONS: tags:t tasks:t tex:t timestamp:t toc:nil todo:t |:t
+#+DESCRIPTION:
+#+EXCLUDE_TAGS: noexport
+#+KEYWORDS:
+#+LANGUAGE: en
+#+SELECT_TAGS: export
+
+#+GOOGLE_PLUS: https://plus.google.com/fatfingererr
+#+WWW: http://fatfingererr.github.io/
+#+GITHUB: http://github.com/fatfingererr
+#+TWITTER: fatfingererr
+
+#+HASHTAG: tensorforce
+
+* TensorForce 基本介紹
+  :PROPERTIES:
+  :SLIDE:    segue dark quote
+  :ASIDE:    right bottom
+  :ARTICLE:  flexbox vleft auto-fadein
+  :END:
+
+*** TensorForce 簡介
+
+- 開源的 Reinforcement Learning (RL) library
+
+- 建立在 TensorFlow 上，目前與 Python 2.7 和 3.5 相容
+
+- 沒有對輸入和狀態有限制，可自由建構代理與環境
+
+- 在 Agent 和 Update logic 做了嚴格分離，以便在真實環境中使用
+
+- 主打將 RL logic 呈現在 TensorFlow 的圖表上頭，減少對 Python 的依賴
