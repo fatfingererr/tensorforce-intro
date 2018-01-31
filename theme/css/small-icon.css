@@ -1,5 +1,5 @@
 slides > slide:not(.nobackground):before {
-background: url(../../images/emacs-icon.png) no-repeat 0 50%;
+background: url(../../images/sukki-icon.png) no-repeat 0 50%;
 font-size: 12pt;
 content: "tensorforce";
 position: absolute;

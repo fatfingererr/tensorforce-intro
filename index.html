@@ -2,11 +2,11 @@
 <html>
 <head>
 <title></title>
-<!-- 2018-01-30 Tue 09:22 -->
+<!-- 2018-01-31 Wed 22:38 -->
 <meta  charset="utf-8" />
 <meta  htto-equiv="X-UA-Compatible" content="chrome=1" />
 <meta  name="generator" content="Org-mode with org-ioslide" />
-<meta  name="author" content="fatfingererr @ Sukki 二月聚會" />
+<meta  name="author" content="fatfingererr @ Sukki 2018 二月聚會" />
 
 
 <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">-->
@@ -27,7 +27,7 @@
 <body style="opacity: 0">
 <slides class="layout-widescreen">
 <slide class="title-slide segue nobackground">
-       <aside class="gdbar"><img src="images/emacs-icon.png"></aside>
+       <aside class="gdbar"><img src="images/sukki-icon.png"></aside>
        <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
        <hgroup class="auto-fadein">
          <h1 data-config-title><!-- populated from slide_config.json --></h1>
@@ -37,9 +37,9 @@
     </slide>
 
 <slide id="sec-" class=" segue dark quote nobackground" style="background-image: url(nil)">
-<aside class="gdbar right bottom"><img src="images/emacs-icon.png"></aside><hgroup class="">
-       <h2 class=" "><div id="outline-container-orgb993347" class="outline-2">
-<h2 id="orgb993347">TensorForce 基本介紹</h2>
+<aside class="gdbar right bottom"><img src="images/sukki-icon.png"></aside><hgroup class="">
+       <h2 class=" "><div id="outline-container-orgea4441c" class="outline-2">
+<h2 id="orgea4441c">TensorForce 基本介紹</h2>
 </div>
 </h2>
        <h3></h3>
@@ -52,8 +52,8 @@
 </slide>
 <slide id="sec-"  >
 <hgroup class="">
-       <h2 class=" "><div id="outline-container-orge15d73a" class="outline-4">
-<h4 id="orge15d73a">TensorForce 簡介</h4>
+       <h2 class=" "><div id="outline-container-orgccab18b" class="outline-4">
+<h4 id="orgccab18b">TensorForce 簡介</h4>
 </div>
 </h2>
        <h3></h3>
@@ -61,20 +61,741 @@
 <article class="" id="text-">
 <ul>
 <li>開源的 Reinforcement Learning (RL) library</li>
+</ul>
 
+
+<ul>
 <li>建立在 TensorFlow 上，目前與 Python 2.7 和 3.5 相容</li>
+</ul>
 
+
+<ul>
 <li>沒有對輸入和狀態有限制，可自由建構代理與環境</li>
+</ul>
 
-<li>在 Agent 和 Update logic 做了嚴格分離，以便在真實環境中使用</li>
 
-<li>主打將 RL logic 呈現在 TensorFlow 的圖表上頭，減少對 Python 的依賴</li>
+<ul>
+<li>在 Agent Logic 和 Update Logic 做了嚴格分離，以便在真實環境中使用</li>
+</ul>
+
+
+<ul>
+<li>主打將 RL Logic 呈現在 TensorFlow 的圖表上頭，減少對 Python 的依賴</li>
 </ul>
 
 
 </article>
 
 </slide>
+
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgd36a163" class="outline-4">
+<h4 id="orgd36a163">懶人安裝法</h4>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<ul>
+<li>安裝詳細請見官網 <a href="https://github.com/reinforceio/tensorforce#installation">GitHub - reinforceio/tensorforce : Installation</a></li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="bash">
+# 已有 tensorflow
+pip install tensorforce
+
+# 沒有 tensorflow + 與 tensorflow 一同安裝
+pip install tensorforce[tf]
+
+# 務必更新, 否則可能會有 error
+pip install --upgrade tensorforce</pre>
+
+</div>
+
+
+</article>
+
+</slide>
+
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-org94131e5" class="outline-4">
+<h4 id="org94131e5">開門見山來 DEMO</h4>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<ul>
+<li>如果沒有 <code>gym</code> 請先安裝，詳細見官網 <a href="https://github.com/openai/gym#installation">GitHub - openai/gym</a></li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="bash">
+pip install gym</pre>
+
+</div>
+
+<ul>
+<li>再來 demo ,  <code>TensorForce</code> 有提供 example</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="bash">
+git clone https://github.com/reinforceio/tensorforce.git
+cd tensorforce</pre>
+
+</div>
+
+
+</article>
+
+</slide>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-org16bcad9" class="outline-4">
+<h4 id="org16bcad9">開門見山來 DEMO</h4>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<ul>
+<li>測試執行請留意添加輸出資料夾的參數 <code>--monitor</code> ，方便檢視：</li>
+</ul>
+
+
+<ul>
+<li>我則是在 tensorforce 資料夾底下開一個 <code>results</code> (windows)</li>
+</ul>
+
+
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="batch">
+mkdir results
+python examples/openai_gym.py CartPole-v0^
+                           -a examples/configs/vpg.json^
+                           -n examples/configs/mlp2_network.json^
+                           -e 100^
+                           -m 5000^
+                           --monitor results</pre>
+
+</div>
+
+
+</article>
+
+</slide>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-org6d7402b" class="outline-4">
+<h4 id="org6d7402b">DEMO 結果</h4>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<ul>
+<li>輸出會有兩個 <code>json</code> 檔案</li>
+</ul>
+
+<article class="flexbox vcenter">
+
+<div class="figure">
+<p><img src="images/tensorforce-results.png" alt="tensorforce-results.png" width="800px" />
+</p>
+</div>
+</article>
+
+
+</article>
+
+</slide>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgc05bcd7" class="outline-4">
+<h4 id="orgc05bcd7">DEMO 結果</h4>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<ul>
+<li><code>epsiode_batch.json</code> 內容大致如下</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="json">
+{"initial_reset_timestamp": 1517301297.9757686,
+
+ "timestamps": [1517301297.9968548, 1517301298.0198836, ... , 1517301299.1702468],
+
+ "episode_lengths": [14, 22, 29, 16, 15, ... , 28, 22, 24, 17, 21, 23],
+
+ "episode_rewards": [14.0, 22.0, 29.0, 16.0, ..., 21.0, 24.0, 40.0, 23.0],
+
+ "episode_types": ["t", "t", "t", "t", ... , "t", "t", "t", "t"]}</pre>
+
+</div>
+
+
+</article>
+
+</slide>
+
+</slide>
+
+
+</slide>
+<slide id="sec-" class=" segue dark quote nobackground" style="background-image: url(nil)">
+<aside class="gdbar right bottom"><img src="images/sukki-icon.png"></aside><hgroup class="">
+       <h2 class=" "><div id="outline-container-org6dad1ed" class="outline-2">
+<h2 id="org6dad1ed">TensorForce 流程說明</h2>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="flexbox vleft auto-fadein" id="text-">
+
+
+</article>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-org783fff8" class="outline-4">
+<h4 id="org783fff8">TensorForce 流程</h4>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<ul>
+<li>TensorForce 的執行流程非常簡單</li>
+</ul>
+
+
+<ul>
+<li>是在 TensorFlow 和 Oepn AI Gym 之間的連結橋梁</li>
+</ul>
+
+
+<ul>
+<li>OpenAI Gym 提供 <code>Environment</code> 也就是 <code>gym_id</code></li>
+</ul>
+
+
+<ul>
+<li>而 <code>TensorFlow</code> 被定義成 <code>Model</code> 讓 <code>Agent</code> 來初始化</li>
+</ul>
+
+
+<ul>
+<li>透過建立一個集成物件 <code>Runner</code> 來進行 RL 訓練</li>
+</ul>
+
+
+</article>
+
+</slide>
+
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-org538ffc8" class="outline-4">
+<h4 id="org538ffc8">TensorForce 流程</h4>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<article class="flexbox vcenter">
+
+<div class="figure">
+<p><img src="images/tensorforce-intro.png" alt="tensorforce-intro.png" width="900px" />
+</p>
+</div>
+</article>
+
+
+</article>
+
+</slide>
+
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-org5542297" class="outline-4">
+<h4 id="org5542297">TensorForce 流程 - 以 openai-gym.py 為例 (1/7)</h4>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<ul>
+<li>我們可以讀 code : <a href="https://github.com/reinforceio/tensorforce/blob/master/examples/openai_gym.py">tensorforce/openai-gym.py - GitHub</a></li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="python">
+import argparse # 1. 為了在 command-line 搭配不同 arg 執行
+import json     # 2. 讀取 Agent 以及 Network 設置
+import logging  # 3. 每個 epsiode 進行紀錄
+import os       # 4. 操作檔案路徑
+import time     # 5. 操作運算時間
+
+from tensorforce import TensorForceError # 丟 Error
+from tensorforce.agents import Agent     # 建立 Agent
+from tensorforce.execution import Runner # 建立 Runner
+from tensorforce.contrib.openai_gym import OpenAIGym # 建立 Env</pre>
+
+</div>
+
+
+</article>
+
+</slide>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgc9ecfe6" class="outline-4">
+<h4 id="orgc9ecfe6">TensorForce 流程 - 以 openai-gym.py 為例 (2/7)</h4>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<ul>
+<li><code>monitor</code> 相關參數主要是為了 OpenAI Gym 的設置</li>
+</ul>
+
+
+<ul>
+<li>建議不要輸出 Video ，可能遇到不知名錯誤而停止 (GUI Window 問題)</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="python">
+# 建立環境 Environment
+ environment = OpenAIGym(
+        gym_id=args.gym_id,               # Gym ID 就是你的特定環境
+        monitor=args.monitor,             # 是否要輸出 Gym Results
+        monitor_safe=args.monitor_safe,   # 是否要避免蓋掉之前的 Results
+        monitor_video=args.monitor_video  # 是否要每隔幾步輸出影片(危險!)
+    )</pre>
+
+</div>
+
+
+</article>
+
+</slide>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-org4a1eb9d" class="outline-4">
+<h4 id="org4a1eb9d">TensorForce 流程 - 以 openai-gym.py 為例 (3/7)</h4>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<ul>
+<li>接著是從 JSON 讀取相關設置， <code>spec</code> 結尾的函數是對 <code>dict</code> 字典資料的處理</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="python">
+if args.agent_config is not None:
+        <b>with open(args.agent_config, 'r') as fp:</b>
+            <b>agent_config = json.load(fp=fp)</b>
+    else:
+        raise TensorForceError("No agent configuration provided.")
+
+    if args.network_spec is not None:
+        <b>with open(args.network_spec, 'r') as fp:</b>
+            <b>network_spec = json.load(fp=fp)</b>
+    else:
+        network_spec = None
+        logger.info("No network configuration provided.")</pre>
+
+</div>
+
+
+</article>
+
+</slide>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-org722ffec" class="outline-4">
+<h4 id="org722ffec">TensorForce 流程 - 以 openai-gym.py 為例 (4/7)</h4>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<ul>
+<li>其中 Agent Config 的 JSON 大概長成這樣：</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="json">
+{
+    "type": "vpg_agent", # RL Agent 名稱
+    "batch_size": 4000,        # TensorFlow 中的 batch size
+    "optimizer": {             # TensorFlow 中的 optimizer
+        "type": "adam",        # TensorFlow 中的 optimize type
+        "learning_rate": 1e-2  # TensorFlow 中的 learning rate
+    },
+    "discount": 0.99,          # TensorFlow 中的 discount factor
+    "entropy_regularization": null, # TensorFlow 中的... (略)
+    # ...(略)
+}</pre>
+
+</div>
+
+<ul>
+<li>總之這裡的設置都是 TensorFlow 的基本參數設置</li>
+</ul>
+
+
+</article>
+
+</slide>
+
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-org121145c" class="outline-4">
+<h4 id="org121145c">TensorForce 流程 - 以 openai-gym.py 為例 (5/7)</h4>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<ul>
+<li>而 <code>networ_spec</code> 讀取的 JSON 就是 TensorFlow Model 的設置：</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="json">
+{
+    "type": "conv2d", "size": 32, "window": 8, "stride": 4
+},
+... (略)
+{
+    "type": "flatten"
+},
+{
+    "type": "dense", "size": 512
+}</pre>
+
+</div>
+
+
+</article>
+
+</slide>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-org186ff09" class="outline-4">
+<h4 id="org186ff09">TensorForce 流程 - 以 openai-gym.py 為例 (6/7)</h4>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<ul>
+<li>接著你需要定義一個 <code>epsiode_finished</code> 後面講 runner 會提到</li>
+</ul>
+
+
+<ul>
+<li>主要是方便你可以在每個 epsiode 使用 <code>logger</code> 輸出迭代資訊</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="python">
+def episode_finished(r):
+        if r.episode % report_episodes == 0:
+            steps_per_second = r.timestep / (time.time() - r.start_time)
+            logger.info("Finished episode {} after {} timesteps. Steps Per Second {}"
+                        .format(r.agent.episode, r.episode_timestep, steps_per_second
+            ))
+        return True</pre>
+
+</div>
+
+
+</article>
+
+</slide>
+
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgd79ba32" class="outline-4">
+<h4 id="orgd79ba32">TensorForce 流程 - 以 openai-gym.py 為例 (7/7)</h4>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<ul>
+<li>最後就是執行 <code>rnuner.run</code> 即可，並且搭配 <code>close</code> 完成整個流程</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="python">
+runner.run(
+        timesteps=args.timesteps,
+        episodes=args.episodes,
+        max_episode_timesteps=args.max_episode_timesteps,
+        deterministic=args.deterministic,
+        episode_finished=episode_finished
+    )
+    runner.close()</pre>
+
+</div>
+
+
+</article>
+
+</slide>
+
+</slide>
+
+
+</slide>
+<slide id="sec-" class=" segue dark quote nobackground" style="background-image: url(nil)">
+<aside class="gdbar right bottom"><img src="images/sukki-icon.png"></aside><hgroup class="">
+       <h2 class=" "><div id="outline-container-org90295f7" class="outline-2">
+<h2 id="org90295f7">TensorForce 深入剖析</h2>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="flexbox vleft auto-fadein" id="text-">
+
+
+</article>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgf732655" class="outline-4">
+<h4 id="orgf732655">Agent 以及 Model 的設置</h4>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<ul>
+<li>在 TensorForce 的 RL 框架中，有兩個東西要留意，分別是 <code>Runner</code> 以及 <code>Model</code></li>
+</ul>
+
+
+<ul>
+<li>Agent (代理) 並不是直接與 Environment (環境) 交互，是透過 Runner</li>
+</ul>
+
+
+<ul>
+<li>Agent (代理) 可以有多個 Model ，例如 <code>Double-DQN</code> 就有兩個 <code>Q-Model</code></li>
+</ul>
+
+
+<article class="flexbox vcenter">
+
+<div class="figure">
+<p><img src="images/agent-and-model-view-in-tensorforce.png" alt="agent-and-model-view-in-tensorforce.png" width="800px" />
+</p>
+</div>
+</article>
+
+
+</article>
+
+</slide>
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgff076ee" class="outline-4">
+<h4 id="orgff076ee">Agent 類</h4>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<ul>
+<li>Agent 是一個 class ，所有的 Agent 都繼承自這個 Class</li>
+</ul>
+
+
+<ul>
+<li>在 TensorForce 中，大部分的 Agent 是指一種 RL 方法，例如 <code>DQNAgent</code></li>
+</ul>
+
+
+<ul>
+<li>有些 Agent 要使用 Model 的歷史資訊（例如 RNN ）則要繼承自 <code>MemoryAgent</code></li>
+</ul>
+
+
+<ul>
+<li>有些 Agent 是在 Model 的每個 Batch 做 Replay 則要繼承自 <code>BatchAgent</code></li>
+</ul>
+
+
+</article>
+
+</slide>
+
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgb2645a6" class="outline-4">
+<h4 id="orgb2645a6">Agent 類</h4>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<article class="flexbox vcenter">
+
+<div class="figure">
+<p><img src="images/agent-class.png" alt="agent-class.png" width="800px" />
+</p>
+</div>
+</article>
+
+
+</article>
+
+</slide>
+
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-org35f7765" class="outline-4">
+<h4 id="org35f7765">Agent 類 - 以 DQNAgent 為例</h4>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<ul>
+<li><code>Agent</code> 本身主要放參數，詳細請見 <a href="https://github.com/reinforceio/tensorforce/blob/master/tensorforce/agents/dqn_agent.py">DQNAgent.py - GitHub</a></li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="python">
+class DQNAgent(MemoryAgent):
+    def __init__(
+　　　
+      　# Agent 的參數
+        self, states_spec,  actions_spec, batched_observe=None, scope='dqn', ...
+
+        # Learning 的參數
+        summary_spec=None, network_spec=None, device=None, ...
+
+　　　  # DQNAgent 的特殊參數
+        target_sync_frequency=10000, target_update_weight=1.0,
+        double_q_model=False, huber_loss=None, ...</pre>
+
+</div>
+
+
+</article>
+
+</slide>
+
+
+</slide>
+<slide id="sec-"  >
+<hgroup class="">
+       <h2 class=" "><div id="outline-container-orgeacb254" class="outline-4">
+<h4 id="orgeacb254">Agent 類 - 以 DQNAgent 為例</h4>
+</div>
+</h2>
+       <h3></h3>
+       </hgroup>
+<article class="" id="text-">
+<ul>
+<li>透過 <code>Agent</code> 來可以定義 Model 初始化函數 <code>initialize_model</code></li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="prettyprint" data-lang="python">
+def initialize_model(self):
+        return QModel(
+            states_spec=self.states_spec,
+            actions_spec=self.actions_spec,
+            network_spec=self.network_spec,
+            ...
+            double_q_model=self.double_q_model,
+            huber_loss=self.huber_loss,
+            random_sampling_fix=True
+            )</pre>
+
+</div>
+
+
+</article>
+
+</slide>
+
+</slide>
+
+</slide>
+<slide id="sec-" class=" thank-you-slide segue nobackground" style="background-image: url(nil)">
+<aside class="gdbar right"><img src="images/sukki-icon.png"></aside><article class="flexbox vleft auto-fadein" id="text-">
+<h2>
+  <p>Thank You !</p>
+</h2>
+<br>
+<p class="auto-fadein" data-config-contact>
+</p>
+</article>
 
 </slide>
 <slide class="backdrop"></slide>
