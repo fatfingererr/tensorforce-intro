@@ -365,3 +365,5 @@ def initialize_model(self):
 :ASIDE: right
 :ARTICLE: flexbox vleft auto-fadein
 :END:
+
+本投影片除引用之版權內容外，皆以 [[https://zh.wikipedia.org/wiki/WTFPL][WTFPL]] 釋出
